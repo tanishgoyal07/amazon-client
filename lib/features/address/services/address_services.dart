@@ -1,9 +1,8 @@
 import 'dart:convert';
+import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/error_handling.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/constants/utils.dart';
-import 'package:amazon_clone/features/account/widgets/orders.dart';
-import 'package:amazon_clone/models/product.dart';
 import 'package:amazon_clone/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:amazon_clone/providers/user_provider.dart';
@@ -72,9 +71,10 @@ class AddressServices {
             cart: [],
           );
           userProvider.setUserFromModel(user);
-          Navigator.pushNamed(context, Orders.routeName);
+           Navigator.pushNamed(context, BottomBar.routeName);
         },
       );
+     
     } catch (e) {
       showSnackBar(context, e.toString());
     }

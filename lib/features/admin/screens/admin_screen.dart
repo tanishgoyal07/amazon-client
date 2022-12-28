@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/account/services/account_services.dart';
 import 'package:amazon_clone/features/admin/screens/analytics_screen.dart';
 import 'package:amazon_clone/features/admin/screens/orders_screen.dart';
 import 'package:amazon_clone/features/admin/screens/posts_screen.dart';
@@ -51,12 +52,42 @@ class _AdminScreenState extends State<AdminScreen> {
                   color: Colors.black,
                 ),
               ),
-              const Text(
-                'Admin',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              Row(
+                 mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Text(
+                    'Admin',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => AccountServices().logOut(context),
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 0),
+                      height: 30,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 0.0,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.white,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Log Out',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -64,74 +95,75 @@ class _AdminScreenState extends State<AdminScreen> {
       ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _page,
-          selectedItemColor: GlobalVariables.selectedNavBarColor,
-          unselectedItemColor: GlobalVariables.unselectedNavBarColor,
-          backgroundColor: GlobalVariables.backgroundColor,
-          iconSize: 28,
-          onTap: updatePage,
-          items: [
-            //Posts
-            BottomNavigationBarItem(
-              icon: Container(
-                width: bottomBarWidth,
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: _page == 0
-                          ? GlobalVariables.selectedNavBarColor
-                          : GlobalVariables.backgroundColor,
-                      width: bottomBarBottomWidth,
-                    ),
+        currentIndex: _page,
+        selectedItemColor: GlobalVariables.selectedNavBarColor,
+        unselectedItemColor: GlobalVariables.unselectedNavBarColor,
+        backgroundColor: GlobalVariables.backgroundColor,
+        iconSize: 28,
+        onTap: updatePage,
+        items: [
+          //Posts
+          BottomNavigationBarItem(
+            icon: Container(
+              width: bottomBarWidth,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: _page == 0
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBottomWidth,
                   ),
                 ),
-                child: const Icon(
-                  Icons.home_outlined,
-                ),
               ),
-              label: '',
+              child: const Icon(
+                Icons.home_outlined,
+              ),
             ),
-            //Analytics
-            BottomNavigationBarItem(
-              icon: Container(
-                width: bottomBarWidth,
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: _page == 1
-                          ? GlobalVariables.selectedNavBarColor
-                          : GlobalVariables.backgroundColor,
-                      width: bottomBarBottomWidth,
-                    ),
+            label: '',
+          ),
+          //Analytics
+          BottomNavigationBarItem(
+            icon: Container(
+              width: bottomBarWidth,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: _page == 1
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBottomWidth,
                   ),
                 ),
-                child: const Icon(
-                  Icons.analytics,
-                ),
               ),
-              label: '',
+              child: const Icon(
+                Icons.analytics,
+              ),
             ),
-            //Orders
-            BottomNavigationBarItem(
-              icon: Container(
-                width: bottomBarWidth,
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: _page == 2
-                          ? GlobalVariables.selectedNavBarColor
-                          : GlobalVariables.backgroundColor,
-                      width: bottomBarBottomWidth,
-                    ),
+            label: '',
+          ),
+          //Orders
+          BottomNavigationBarItem(
+            icon: Container(
+              width: bottomBarWidth,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: _page == 2
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBottomWidth,
                   ),
                 ),
-                child: const Icon(
-                  Icons.all_inbox_outlined,
-                ),
               ),
-              label: '',
+              child: const Icon(
+                Icons.all_inbox_outlined,
+              ),
             ),
-          ],),
+            label: '',
+          ),
+        ],
+      ),
     );
   }
 }

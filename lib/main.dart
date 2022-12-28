@@ -7,6 +7,7 @@ import 'package:amazon_clone/providers/user_provider.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() {
   runApp(
@@ -53,11 +54,19 @@ class _MyAppState extends State<MyApp> {
             ),
           )),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? Provider.of<UserProvider>(context).user.type == 'user'
-              ? const BottomBar()
-              : const AdminScreen()
-          : const AuthScreen(),
+      home: SplashScreen(
+        seconds: 4,
+        navigateAfterSeconds:
+            Provider.of<UserProvider>(context).user.token.isNotEmpty
+                ? Provider.of<UserProvider>(context).user.type == 'user'
+                    ? const BottomBar()
+                    : const AdminScreen()
+                : const AuthScreen(),
+        image: Image.asset("assets/images/amazon_in.png"),
+        loadingText: const Text("Loading"),
+        photoSize: 100.0,
+        loaderColor: GlobalVariables.secondaryColor,
+      ),
     );
   }
 }

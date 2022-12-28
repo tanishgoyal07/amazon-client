@@ -12,7 +12,7 @@ class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
 
   @override
-  State<BottomBar> createState() => new _BottomBarState();
+  State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
